@@ -1,7 +1,19 @@
-// jQuery plugin
-(function ($) {
+/**
+ * Pretty Header
+ * @version 0.1.0
+ * @author Vladimir Kuznetsov <mistakster@gmail.com>
+ */
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		define([], factory);
+	} else if (typeof module === 'object' && module.exports) {
+		module.exports = factory();
+	} else {
+		root.makePrettyHeader = factory();
+	}
+}(this, function () {
 
-	function makePrettyHeader($ele, options) {
+	return function makePrettyHeader($ele, options) {
 		var i, j, k, x;
 		var $span = $('<span/>');
 		var text = $.trim($ele.text());
@@ -89,12 +101,6 @@
 			x = variations[j].dividers[i];
 		}
 
-	}
-
-	$.fn.prettyHeader = function (options) {
-		return this.each(function () {
-			makePrettyHeader($(this), options);
-		});
 	};
 
-})(jQuery);
+}));

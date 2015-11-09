@@ -2,7 +2,7 @@
   "name": "pretty-header",
   "version": "0.1.0",
   "description": "Split centered text into lines with almost equal width",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
