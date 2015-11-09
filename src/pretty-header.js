@@ -8,6 +8,14 @@
 		define([], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = factory();
+	} else if (typeof jQuery !== 'undefined' && typeof jQuery.fn !== 'undefined') {
+		(function (makePrettyHeader) {
+			jQuery.fn.prettyHeader = function (options) {
+				return this.each(function () {
+					makePrettyHeader(this, options);
+				});
+			};
+		})(factory());
 	} else {
 		root.makePrettyHeader = factory();
 	}
