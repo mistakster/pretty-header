@@ -21,8 +21,9 @@
 	}
 }(this, function () {
 
-	return function makePrettyHeader($ele, options) {
+	return function makePrettyHeader(ele, options) {
 		var i, j, k, x;
+		var $ele = $(ele);
 		var $span = $('<span/>');
 		var text = $.trim($ele.text());
 		$ele.html($span.text(text));
