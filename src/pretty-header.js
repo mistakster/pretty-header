@@ -21,7 +21,12 @@
 	}
 }(this, function () {
 
-	return function makePrettyHeader(ele, options) {
+	/**
+	 * @param {Node} ele which holds the text to decorate
+	 * @param {Object} options
+	 * @param {String} options.nonBreakableCls indicate class name with "white-space: nowrap" style
+	 */
+	function makePrettyHeader(ele, options) {
 		var i, j, k, x;
 		var $ele = $(ele);
 		var $span = $('<span/>');
@@ -110,6 +115,8 @@
 			x = variations[j].dividers[i];
 		}
 
-	};
+	}
+
+	return makePrettyHeader;
 
 }));
