@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo page</title>
+	<style>
+		.header {
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+			font: normal 30px/1.3 serif;
+			background: #eee;
+		}
+		.nowrap {
+			white-space: nowrap;
+		}
+	</style>
+</head>
+<body>
+
+<h2 style="width: 720px;" class="header">
+	One morning, when Gregor Samsa woke from troubled dreams,
+	he found himself transformed in his bed into a horrible vermin.
+</h2>
+
+<h2 style="width: 720px;" class="header pretty">
+	One morning, when Gregor Samsa woke from troubled dreams,
+	he found himself transformed in his bed into a horrible vermin.
+</h2>
+
+<h2 style="width: 512px;" class="header pretty">
+	One morning, when Gregor Samsa woke from troubled dreams,
+	he found himself transformed in his bed into a horrible vermin.
+</h2>
+
+<table style="width: 100%">
+	<tbody>
+	<tr>
+		<td>
+			<h2 style="width: 320px;" class="header pretty">
+				One morning, when Gregor Samsa woke from troubled dreams,
+				he found himself transformed in his bed into a horrible vermin.
+			</h2>
+		</td>
+		<td>
+			<h2 style="width: 320px;" class="header">
+				One morning, when Gregor Samsa woke from troubled dreams,
+				he found himself transformed in his bed into a horrible vermin.
+			</h2>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<div class="header pretty">
+	&ldquo;What&rsquo;s happened to me?&rdquo; he thought. It wasn&rsquo;t a dream.
+</div>
+
+<script src="../src/pretty-header.js"></script>
+<script>
+	(function () {
+		var elements = document.querySelectorAll('.pretty');
+		var i;
+		for (i = 0; i < elements.length; i++) {
+			prettyHeader(elements[i], 'nowrap');
+		}
+	})();
+</script>
+
+</body>
+</html>
