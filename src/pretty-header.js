@@ -37,34 +37,80 @@
 		return factory;
 	}
 
+	function emptyElement(ele) {
+		while (ele.firstChild) {
+			ele.removeChild(ele.firstChild);
+		}
+		return ele;
+	}
+
+	function getText(ele) {
+		var text = ele.textContent || '';
+		return text.trim();
+	}
+
+	function getLinesCount(ele) {
+		var computedStyle = window.getComputedStyle(ele);
+		var height = parseFloat(computedStyle.getPropertyValue('height'));
+		var lineHeight = parseFloat(computedStyle.getPropertyValue('line-height'));
+		return Math.round(height / lineHeight);
+	}
+
+	function getWidth(ele) {
+		var computedStyle = window.getComputedStyle(ele);
+		return parseFloat(computedStyle.getPropertyValue('width'));
+	}
+
+	/**
+	 * @param {Array} words
+	 * @param {Node} container
+	 * @param {Function} elementFactory
+	 */
+	function computeWordWidths(words, container, elementFactory) {
+		var i, span;
+		var len = words.length;
+		var spans = [];
+		var widths = [];
+
+		emptyElement(container);
+		for (i = 0; i < len; i++) {
+			span = elementFactory().appendChild(document.createTextNode(words[i] + ' '));
+			spans.push(span);
+			container.appendChild(span);
+			if (i < len - 1) {
+				container.appendChild(document.createTextNode(' '));
+			}
+		}
+
+		for (i = 0; i < len; i++) {
+			widths.push(getWidth(spans[i]));
+		}
+
+		return widths;
+	}
+
 	/**
 	 * @param {Node} ele which holds the text to decorate
 	 * @param {String|Function} option is a class name or DOM-Node factory function
 	 */
 	function makePrettyHeader(ele, option) {
 
-		var elementFactory = buildElementFactory(option);
-
 		var i, j, k, x;
-		var $ele = $(ele);
-		var $span = $('<span/>');
-		var text = $.trim($ele.text());
-		$ele.html($span.text(text));
-		var lineHeight = parseInt($span.css('line-height'));
-		var height = parseInt($span.css('height'));
-		var lines = Math.round(height / lineHeight);
+		var lines;
+		var elementFactory = buildElementFactory(option);
+		var text = getText(ele);
+		var span = document.createElement('span');
+		span.appendChild(document.createTextNode(text));
+
+		emptyElement(ele).appendChild(span);
+		lines = getLinesCount(ele);
 		if (lines <= 1) {
 			return;
 		}
 
-		var maxWidth = $ele.width();
+		var maxWidth = getWidth(ele);
 		var words = text.split(/\s+/);
-		$span.html('<span>' + words.join(' </span> <span>') + '</span>');
-
-		var wordSpans = $span.find('> span').addClass(option);
-		var wordWidths = $.map(wordSpans, function (wordSpan) {
-			return $(wordSpan).width();
-		});
+		var wordWidths = computeWordWidths(words, span, elementFactory);
 
 		var variations = [];
 
