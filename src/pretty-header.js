@@ -10,9 +10,9 @@
 		module.exports = factory();
 	} else if (typeof jQuery !== 'undefined' && typeof jQuery.fn !== 'undefined') {
 		(function (makePrettyHeader) {
-			jQuery.fn.prettyHeader = function (options) {
+			jQuery.fn.prettyHeader = function (option) {
 				return this.each(function () {
-					makePrettyHeader(this, options);
+					makePrettyHeader(this, option);
 				});
 			};
 		})(factory());
@@ -21,12 +21,30 @@
 	}
 }(this, function () {
 
+	function buildElementFactory(option) {
+		var factory;
+		if (typeof option === 'function') {
+			factory = option;
+		} else if (typeof option === 'string') {
+			factory = function () {
+				var span = document.createElement('span');
+				span.className = option;
+				return span;
+			}
+		} else {
+			throw new Error('Option should be type of String or Function');
+		}
+		return factory;
+	}
+
 	/**
 	 * @param {Node} ele which holds the text to decorate
-	 * @param {Object} options
-	 * @param {String} options.nonBreakableCls indicate class name with "white-space: nowrap" style
+	 * @param {String|Function} option is a class name or DOM-Node factory function
 	 */
-	function makePrettyHeader(ele, options) {
+	function makePrettyHeader(ele, option) {
+
+		var elementFactory = buildElementFactory(option);
+
 		var i, j, k, x;
 		var $ele = $(ele);
 		var $span = $('<span/>');
@@ -43,7 +61,7 @@
 		var words = text.split(/\s+/);
 		$span.html('<span>' + words.join(' </span> <span>') + '</span>');
 
-		var wordSpans = $span.find('> span').addClass(options.nonBreakableCls);
+		var wordSpans = $span.find('> span').addClass(option);
 		var wordWidths = $.map(wordSpans, function (wordSpan) {
 			return $(wordSpan).width();
 		});
@@ -103,11 +121,11 @@
 			}
 		}
 
-		$span.addClass(options.nonBreakableCls);
+		$span.addClass(option);
 		var $lines = [$span];
 		for (i = 1; i < lines; i++) {
 			$ele.append(' ');
-			$lines.push($('<span/>').addClass(options.nonBreakableCls).appendTo($ele));
+			$lines.push($('<span/>').addClass(option).appendTo($ele));
 		}
 
 		for (x = 0, i = 0; i < lines; i++) {
