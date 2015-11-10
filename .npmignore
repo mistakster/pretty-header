@@ -1,0 +1,6 @@
+# IDE things
+.idea
+*.iml
+
+# Test files
+test
