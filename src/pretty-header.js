@@ -17,7 +17,7 @@
 			};
 		})(factory());
 	} else {
-		root.makePrettyHeader = factory();
+		root.prettyHeader = factory();
 	}
 }(this, function () {
 
