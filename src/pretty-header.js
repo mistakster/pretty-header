@@ -167,18 +167,16 @@
 			}
 		}
 
-		$span.addClass(option);
-		var $lines = [$span];
-		for (i = 1; i < lines; i++) {
-			$ele.append(' ');
-			$lines.push($('<span/>').addClass(option).appendTo($ele));
-		}
-
+		emptyElement(ele);
 		for (x = 0, i = 0; i < lines; i++) {
-			$lines[i].html(words.slice(x, variations[j].dividers[i]).join(' '));
+			span = elementFactory();
+			span.appendChild(document.createTextNode(words.slice(x, variations[j].dividers[i]).join(' ')));
+			ele.appendChild(span);
+			if (i < lines - 1) {
+				ele.appendChild(document.createTextNode(' '));
+			}
 			x = variations[j].dividers[i];
 		}
-
 	}
 
 	return makePrettyHeader;
