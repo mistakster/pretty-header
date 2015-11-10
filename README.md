@@ -6,6 +6,8 @@ Split centered text into lines with almost equal width.
 
 Have a look at the [demo page](https://mistakster.github.io/pretty-header/test/) to see this script in action.
 
+![Original and processed versions side by side](https://mistakster.github.io/pretty-header/test/pretty-header-demo.jpg)
+
 ## Usage
 
 ### As npm package
