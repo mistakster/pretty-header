@@ -51,14 +51,15 @@
 
 	function getLinesCount(ele) {
 		var computedStyle = window.getComputedStyle(ele);
-		var height = parseFloat(computedStyle.getPropertyValue('height'));
 		var lineHeight = parseFloat(computedStyle.getPropertyValue('line-height'));
-		return Math.round(height / lineHeight);
+		if (isNaN(lineHeight)) {
+			throw new Error('You should explicitly provide line-height property in CSS');
+		}
+		return Math.round(ele.offsetHeight / lineHeight);
 	}
 
 	function getWidth(ele) {
-		var computedStyle = window.getComputedStyle(ele);
-		return parseFloat(computedStyle.getPropertyValue('width'));
+		return ele.offsetWidth;
 	}
 
 	/**
@@ -74,7 +75,8 @@
 
 		emptyElement(container);
 		for (i = 0; i < len; i++) {
-			span = elementFactory().appendChild(document.createTextNode(words[i] + ' '));
+			span = elementFactory();
+			span.appendChild(document.createTextNode(words[i] + ' '));
 			spans.push(span);
 			container.appendChild(span);
 			if (i < len - 1) {
