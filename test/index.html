@@ -4,12 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Demo page</title>
 	<style>
+		.block {
+			margin: 20px auto;
+			background: #eee;
+		}
+		.block > p {
+			margin: 8px 0 0 -100px;
+			text-align: right;
+			width: 90px;
+			position: absolute;
+		}
+		h2 {
+			margin: 0;
+		}
 		.header {
 			text-align: center;
-			margin-left: auto;
-			margin-right: auto;
 			font: normal 30px/1.3 serif;
-			background: #eee;
 		}
 		.nowrap {
 			white-space: nowrap;
@@ -18,32 +28,40 @@
 </head>
 <body>
 
-<h2 style="width: 720px;" class="header">
-	One morning, when Gregor Samsa woke from troubled dreams,
-	he found himself transformed in his bed into a horrible vermin.
-</h2>
+<div style="width: 720px;" class="block">
+	<p>Original:</p>
+	<h2 class="header">
+		One morning, when Gregor Samsa woke from troubled dreams,
+		he found himself transformed in his bed into a horrible vermin.
+	</h2>
+</div>
 
-<h2 style="width: 720px;" class="header pretty">
-	One morning, when Gregor Samsa woke from troubled dreams,
-	he found himself transformed in his bed into a horrible vermin.
-</h2>
+<div style="width: 720px;" class="block">
+	<p>Processed:</p>
+	<h2 class="header pretty">
+		One morning, when Gregor Samsa woke from troubled dreams,
+		he found himself transformed in his bed into a horrible vermin.
+	</h2>
+</div>
 
-<h2 style="width: 512px;" class="header pretty">
-	One morning, when Gregor Samsa woke from troubled dreams,
-	he found himself transformed in his bed into a horrible vermin.
-</h2>
+<div style="width: 512px;" class="block">
+	<h2 class="header pretty">
+		One morning, when Gregor Samsa woke from troubled dreams,
+		he found himself transformed in his bed into a horrible vermin.
+	</h2>
+</div>
 
 <table style="width: 100%">
 	<tbody>
 	<tr>
 		<td>
-			<h2 style="width: 320px;" class="header pretty">
+			<h2 style="width: 320px;" class="header pretty block">
 				One morning, when Gregor Samsa woke from troubled dreams,
 				he found himself transformed in his bed into a horrible vermin.
 			</h2>
 		</td>
 		<td>
-			<h2 style="width: 320px;" class="header">
+			<h2 style="width: 320px;" class="header block">
 				One morning, when Gregor Samsa woke from troubled dreams,
 				he found himself transformed in his bed into a horrible vermin.
 			</h2>
@@ -52,15 +70,15 @@
 	</tbody>
 </table>
 
-<div class="header pretty">
+<div class="header pretty block">
 	&ldquo;What&rsquo;s happened to me?&rdquo; he thought. It wasn&rsquo;t a dream.
 </div>
 
 <script src="../src/pretty-header.js"></script>
 <script>
 	(function () {
-		var elements = document.querySelectorAll('.pretty');
-		var i;
+		var i, elements;
+		elements = document.querySelectorAll('.pretty');
 		for (i = 0; i < elements.length; i++) {
 			prettyHeader(elements[i], 'nowrap');
 		}
