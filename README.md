@@ -72,6 +72,14 @@ If option is a string, it will be using as class for `<span>`.
 
 If option is a function, it should return new DOM-Node.
 
+```js
+prettyHeader(element, function () {
+	var helper = document.createElement('div');
+	helper.className = 'pretty-header-helper';
+	return helper;
+});
+```
+
 ## License
 
 MIT © [Vladimir Kuznetsov](https://twitter.com/mistakster)
