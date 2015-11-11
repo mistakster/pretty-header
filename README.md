@@ -38,6 +38,18 @@ for (i = 0; i < elements.length; i++) {
 </script>
 ```
 
+### As jQuery plugin
+
+```html
+<script src="jquery-2.1.4.js"></script>
+<script src="pretty-header.js"></script>
+<script>
+	$(function () {
+		$('.pretty').prettyHeader('nowrap');
+	});
+</script>
+```
+
 ## API
 
 ### prettyHeader(element, option)
