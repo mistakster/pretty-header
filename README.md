@@ -44,9 +44,9 @@ for (i = 0; i < elements.length; i++) {
 <script src="jquery-2.1.4.js"></script>
 <script src="pretty-header.js"></script>
 <script>
-	$(function () {
-		$('.pretty').prettyHeader('nowrap');
-	});
+  $(function () {
+    $('.pretty').prettyHeader('nowrap');
+  });
 </script>
 ```
 
@@ -74,9 +74,9 @@ If option is a function, it should return new DOM-Node.
 
 ```js
 prettyHeader(element, function () {
-	var helper = document.createElement('div');
-	helper.className = 'pretty-header-helper';
-	return helper;
+  var helper = document.createElement('div');
+  helper.className = 'pretty-header-helper';
+  return helper;
 });
 ```
 
