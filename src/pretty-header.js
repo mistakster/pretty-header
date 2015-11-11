@@ -44,11 +44,6 @@
 		return ele;
 	}
 
-	function getText(ele) {
-		var text = ele.textContent || '';
-		return text.trim();
-	}
-
 	function getLinesCount(ele) {
 		var computedStyle = window.getComputedStyle(ele);
 		var lineHeight = parseFloat(computedStyle.getPropertyValue('line-height'));
@@ -100,18 +95,20 @@
 		var i, j, k, x;
 		var lines;
 		var elementFactory = buildElementFactory(option);
-		var text = getText(ele);
+		var text = ele.textContent;
 		var span = document.createElement('span');
+
 		span.appendChild(document.createTextNode(text));
 
 		emptyElement(ele).appendChild(span);
 		lines = getLinesCount(ele);
 		if (lines <= 1) {
+			ele.textContent = text;
 			return;
 		}
 
 		var maxWidth = getWidth(ele);
-		var words = text.split(/\s+/);
+		var words = text.trim().split(/\s+/);
 		var wordWidths = computeWordWidths(words, span, elementFactory);
 
 		var variations = [];
