@@ -1,6 +1,6 @@
 # Pretty Header
 
-Split centered text into lines with almost equal width.
+Split a text into lines with almost equal width.
 
 ## Demo
 
@@ -40,9 +40,9 @@ for (i = 0; i < elements.length; i++) {
 
 ## API
 
-### prettyHeader(name, option)
+### prettyHeader(element, option)
 
-### name
+### element
 
 Type: `Node`
 
@@ -58,7 +58,7 @@ or factory function for such elements.
 
 If option is a string, it will be using as class for `<span>`.
 
-If option is a function, it should return new valid DOM-Node.
+If option is a function, it should return new DOM-Node.
 
 ## License
 
