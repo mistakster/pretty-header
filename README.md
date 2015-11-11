@@ -80,6 +80,9 @@ prettyHeader(element, function () {
 });
 ```
 
+This trick may help to get neutral inline-styled element when ordinary
+`<span>` has inappropriate CSS.
+
 ## License
 
 MIT © [Vladimir Kuznetsov](https://twitter.com/mistakster)
