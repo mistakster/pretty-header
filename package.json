@@ -1,6 +1,6 @@
 {
   "name": "pretty-header",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Split centered text into lines with almost equal width",
   "main": "src/pretty-header.js",
   "scripts": {

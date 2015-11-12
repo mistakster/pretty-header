@@ -1,6 +1,6 @@
 /**
  * Pretty Header
- * @version 0.1.0
+ * @version 0.1.2
  * @author Vladimir Kuznetsov <mistakster@gmail.com>
  */
 (function (root, factory) {
