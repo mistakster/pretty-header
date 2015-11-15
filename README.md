@@ -65,7 +65,7 @@ Container element.
 Type: `String|Function`
 
 Each line of text will be wrapper into the element with
-applied `white-spce: nowrap` style. You can provide class name
+applied `white-space: nowrap` style. You can provide class name
 or factory function for such elements.
 
 If option is a string, it will be using as class for `<span>`.
