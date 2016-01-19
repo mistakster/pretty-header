@@ -93,7 +93,7 @@
 	function makePrettyHeader(ele, option) {
 
 		var i, j, k, x;
-		var lines;
+		var lines, words;
 		var elementFactory = buildElementFactory(option);
 		var text = ele.textContent;
 		var span = document.createElement('span');
@@ -102,13 +102,13 @@
 
 		emptyElement(ele).appendChild(span);
 		lines = getLinesCount(ele);
-		if (lines <= 1) {
+		words = text.trim().split(/\s+/);
+
+		if (lines <= 1 || words.length <= lines) {
 			ele.textContent = text;
 			return;
 		}
 
-		var maxWidth = getWidth(ele);
-		var words = text.trim().split(/\s+/);
 		var wordWidths = computeWordWidths(words, span, elementFactory);
 
 		var variations = [];

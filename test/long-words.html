@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo page</title>
+	<style>
+		.block {
+			margin: 20px auto;
+			background: #eee;
+		}
+		.block > p {
+			margin: 8px 0 0 -100px;
+			text-align: right;
+			width: 90px;
+			position: absolute;
+		}
+		h2 {
+			margin: 0;
+		}
+		.header {
+			text-align: center;
+			font: normal 60px/1.3 serif;
+		}
+		.nowrap {
+			white-space: nowrap;
+		}
+	</style>
+</head>
+<body>
+
+<div style="width: 300px;" class="block">
+	<p>Original:</p>
+	<h2 class="header pretty">
+		Gregor Samsa
+	</h2>
+</div>
+
+<script src="../src/pretty-header.js"></script>
+<script>
+	(function () {
+		var i, elements;
+		elements = document.querySelectorAll('.pretty');
+		for (i = 0; i < elements.length; i++) {
+			prettyHeader(elements[i], 'nowrap');
+		}
+	})();
+</script>
+
+</body>
+</html>
