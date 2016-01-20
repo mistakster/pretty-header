@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "graph",
+    "graph/react"
+  ],
+  "rules": {
+    "no-unused-vars": [2, {"vars": "local", "args": "after-used", "varsIgnorePattern": "styles"}],
+    "no-var": 0,
+    "no-shadow": 0,
+    "object-shorthand": 0
+  }
+}

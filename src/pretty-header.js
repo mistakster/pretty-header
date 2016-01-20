@@ -2,6 +2,7 @@
  * Pretty Header
  * @author Vladimir Kuznetsov <mistakster@gmail.com>
  */
+/* global define jQuery */
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		define([], factory);
@@ -19,20 +20,22 @@
 		root.prettyHeader = factory();
 	}
 }(this, function () {
-
 	function buildElementFactory(option) {
-		var factory;
+		var factory, span;
+
 		if (typeof option === 'function') {
 			factory = option;
 		} else if (typeof option === 'string') {
 			factory = function () {
-				var span = document.createElement('span');
+				span = document.createElement('span');
 				span.className = option;
+
 				return span;
-			}
+			};
 		} else {
 			throw new Error('Option should be type of String or Function');
 		}
+
 		return factory;
 	}
 
@@ -46,9 +49,11 @@
 	function getLinesCount(ele) {
 		var computedStyle = window.getComputedStyle(ele);
 		var lineHeight = parseFloat(computedStyle.getPropertyValue('line-height'));
+
 		if (isNaN(lineHeight)) {
 			throw new Error('You should explicitly provide line-height property in CSS');
 		}
+
 		return Math.round(ele.offsetHeight / lineHeight);
 	}
 
@@ -90,9 +95,9 @@
 	 * @param {String|Function} option is a class name or DOM-Node factory function
 	 */
 	function makePrettyHeader(ele, option) {
-
-		var i, j, k, x;
-		var lines, words;
+		var i, j, k, x, lines, words, wordWidths;
+		var variations = [];
+		var dividers = [];
 		var elementFactory = buildElementFactory(option);
 		var text = ele.textContent;
 		var span = document.createElement('span');
@@ -108,35 +113,37 @@
 			return;
 		}
 
-		var wordWidths = computeWordWidths(words, span, elementFactory);
-
-		var variations = [];
+		wordWidths = computeWordWidths(words, span, elementFactory);
 
 		function sum(arr) {
+			var i;
 			var result = 0;
-			for (var i = 0; i < arr.length; i++) {
+
+			for (i = 0; i < arr.length; i++) {
 				result += arr[i];
 			}
+
 			return result;
 		}
 
 		function computeVariant(dividers) {
+			var i, x, lines, diff;
 			var width = [];
-			var i, x, lines;
+
 			dividers.push(words.length);
 			lines = dividers.length;
 			for (x = 0, i = 0; i < lines; i++) {
 				width.push(sum(wordWidths.slice(x, dividers[i])));
 				x = dividers[i];
 			}
-			var diff = Math.max.apply(null, width) - Math.min.apply(null, width);
+			diff = Math.max.apply(null, width) - Math.min.apply(null, width);
+
 			return {
 				dividers: dividers,
 				diff: diff
 			};
 		}
 
-		var dividers = [];
 		for (i = 1; i < lines; i++) {
 			dividers.push(i);
 		}
@@ -178,5 +185,4 @@
 	}
 
 	return makePrettyHeader;
-
 }));

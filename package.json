@@ -4,7 +4,7 @@
   "description": "Split centered text into lines with almost equal width",
   "main": "src/pretty-header.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "./node_modules/.bin/eslint --ext .js ./src/"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/mistakster/pretty-header/issues"
   },
-  "homepage": "https://github.com/mistakster/pretty-header#readme"
+  "homepage": "https://github.com/mistakster/pretty-header#readme",
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-graph": "^0.3.0"
+  }
 }
